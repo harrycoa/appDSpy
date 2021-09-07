@@ -53,3 +53,18 @@ print ("El data set tiene %d filas y %d columnas" % (contador, n_cols))
 
 df3 = pd.DataFrame(main_dict)
 df3.head()
+
+## Lectura y Escritura de archivos
+infile = mainpath + "\\" + "customer\\Customer Churn Model.txt"
+outfile = mainpath + "\\" + "customer\\Tab Customer Churn Model.txt"
+
+with open(infile, "r") as infile1:
+    with open(outfile, "w") as outfile1:
+        for line in infile1:
+            fields = line.strip().split(",")
+            outfile1.write("\t".join(fields))
+            outfile1.write("\n")
+
+df4 = pd.read_csv(outfile, sep = "\t")
+df4.head()
+
