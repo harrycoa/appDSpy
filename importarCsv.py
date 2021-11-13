@@ -1,4 +1,6 @@
 import pandas as pd
+import csv
+import urllib3
 ## DATA 1
 data = pd.read_csv("E:\\Git\\Github\\9.- Data Science\\appDSpy\\datasets\\titanic3.csv")
 data.head()
@@ -68,3 +70,21 @@ with open(infile, "r") as infile1:
 df4 = pd.read_csv(outfile, sep = "\t")
 df4.head()
 
+## Leer CSV desde url
+medals_url = "http://winterolympicsmedals.com/medals.csv"
+medals_data = pd.read_csv(medals_url)
+medals_data.head()
+
+## Leer CSV desde url con urllib3
+
+http = urllib3.PoolManager()
+r = http.request('GET', medals_url)
+r.status
+response = r.data
+
+
+## Utilizamos csv lib
+cr = csv.reader(response)
+
+for row in cr:
+    print(row)
